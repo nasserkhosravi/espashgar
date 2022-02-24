@@ -98,36 +98,57 @@ abstract class Space4D<SELF> {
     }
 
     operator fun times(time: Int): SELF {
-        return createSelf(createValue4d(start?.times(time), top?.times(time), end?.times(time), bottom?.times(time)))
+        return createSelf(
+            createValue4d(
+                start.selfOrZero().times(time),
+                top.selfOrZero().times(time),
+                end.selfOrZero().times(time),
+                bottom.selfOrZero().times(time)
+            )
+        )
     }
 
     operator fun timesAssign(time: Int) {
-        start = start?.times(time)
-        end = end?.times(time)
-        top = top?.times(time)
-        bottom = bottom?.times(time)
+        start = start.selfOrZero().times(time)
+        end = end.selfOrZero().times(time)
+        top = top.selfOrZero().times(time)
+        bottom = bottom.selfOrZero().times(time)
     }
 
     operator fun plus(plus: Int): SELF {
-        return createSelf(createValue4d(start?.plus(plus), top?.plus(plus), end?.plus(plus), bottom?.plus(plus)))
+        return createSelf(
+            createValue4d(
+                start.selfOrZero().plus(plus),
+                top.selfOrZero().plus(plus),
+                end.selfOrZero().plus(plus),
+                bottom.selfOrZero().plus(plus)
+            )
+        )
     }
 
     operator fun plusAssign(plus: Int) {
-        start = start?.plus(plus)
-        end = end?.plus(plus)
-        top = top?.plus(plus)
-        bottom = bottom?.plus(plus)
+        start = start.selfOrZero().plus(plus)
+        end = end.selfOrZero().plus(plus)
+        top = top.selfOrZero().plus(plus)
+        bottom = bottom.selfOrZero().plus(plus)
     }
 
     operator fun minus(minus: Int): SELF {
-        return createSelf(createValue4d(start?.minus(minus), top?.minus(minus), end?.minus(minus), bottom?.minus(minus)))
+        return createSelf(
+            createValue4d(
+                start.selfOrZero().minus(minus),
+                top.selfOrZero().minus(minus),
+                end.selfOrZero().minus(minus),
+                bottom.selfOrZero().minus(minus)
+            )
+        )
     }
 
     operator fun minusAssign(minus: Int) {
-        start = start?.minus(minus)
-        end = end?.minus(minus)
-        top = top?.minus(minus)
-        bottom = bottom?.minus(minus)
+        start = start.selfOrZero().minus(minus)
+        end = end.selfOrZero().minus(minus)
+        top = top.selfOrZero().minus(minus)
+        bottom = bottom.selfOrZero().minus(minus)
     }
 
     private fun Int?.plusWith(b: Int?): Int? {
@@ -135,6 +156,10 @@ abstract class Space4D<SELF> {
             return b
         }
         return this ?: 0 + (b ?: 0)
+    }
+
+    private fun Int?.selfOrZero(): Int {
+        return this ?: 0
     }
 
     override fun equals(other: Any?): Boolean {
@@ -156,7 +181,13 @@ abstract class Space4D<SELF> {
 
     companion object {
 
-        internal fun createValue4dByType(type: Int, start: Int?, top: Int?, end: Int?, bottom: Int?): Value4d {
+        internal fun createValue4dByType(
+            type: Int,
+            start: Int?,
+            top: Int?,
+            end: Int?,
+            bottom: Int?
+        ): Value4d {
             return when (type) {
                 TypedValue.COMPLEX_UNIT_DIP -> Dp4d(start, top, end, bottom)
                 TypedValue.COMPLEX_UNIT_PX -> Px4d(start, top, end, bottom)
@@ -164,7 +195,7 @@ abstract class Space4D<SELF> {
             }
         }
 
-        private fun unsupportedType()  = IllegalArgumentException("Unsupported type")
+        private fun unsupportedType() = IllegalArgumentException("Unsupported type")
     }
 
 }
