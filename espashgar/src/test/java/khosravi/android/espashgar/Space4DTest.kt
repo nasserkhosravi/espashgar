@@ -33,6 +33,34 @@ class Space4DTest {
         assertIsDp(sut)
     }
 
+    @Test
+    fun `test sum empty`() {
+        val sut = createSutDp() + 12
+        assertThat(sut.start).isEqualTo(12)
+        assertThat(sut.top).isEqualTo(12)
+        assertThat(sut.end).isEqualTo(12)
+        assertThat(sut.bottom).isEqualTo(12)
+    }
+
+    @Test
+    fun `test sum`() {
+        val sut = createSutDp(1,2,3,4) + 12
+        assertThat(sut.start).isEqualTo(13)
+        assertThat(sut.top).isEqualTo(14)
+        assertThat(sut.end).isEqualTo(15)
+        assertThat(sut.bottom).isEqualTo(16)
+    }
+
+    @Test
+    fun `test sumAssign`() {
+        val sut = createSutDp(1,1,1,1)
+        sut += 10
+        assertThat(sut.start).isEqualTo(11)
+        assertThat(sut.top).isEqualTo(11)
+        assertThat(sut.end).isEqualTo(11)
+        assertThat(sut.bottom).isEqualTo(11)
+    }
+
     private fun assertIsPx(sut: Space4dFake) {
         assertThat(sut.isPx()).isTrue()
         assertThat(sut.isDp()).isFalse()
@@ -43,12 +71,22 @@ class Space4DTest {
         assertThat(sut.isPx()).isFalse()
     }
 
-    private fun createSutDp(): Space4dFake {
-        return Space4dFake(Dp4d(null, null, null, null))
+    private fun createSutDp(
+        start: Int? = null,
+        top: Int? = null,
+        end: Int? = null,
+        bottom: Int? = null
+    ): Space4dFake {
+        return Space4dFake(Dp4d(start, top, end, bottom))
     }
 
-    private fun createSutPx(): Space4dFake {
-        return Space4dFake(Px4d(null, null, null, null))
+    private fun createSutPx(
+        start: Int? = null,
+        top: Int? = null,
+        end: Int? = null,
+        bottom: Int? = null
+    ): Space4dFake {
+        return Space4dFake(Px4d(start, top, end, bottom))
     }
 
     private class Space4dFake(override val mainValue: Value4d) : Space4D<Space4dFake>() {
