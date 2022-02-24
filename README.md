@@ -5,7 +5,8 @@ Spashgar is a **dynamic** spacer for Android That eases building, manipulating, 
 Totally, padding and margin setting is easy in android but if you want do it in a managed manner, this library is for you, especially if you build your UI programmatically.  
 Also this library has a beautiful syntax 😉.
 
-    //Comprehensive builder-> Margin.dp() or Margin.px() val margin = marginDp().all(15)    .top(0)    
+    //Comprehensive builder-> Margin.dp() or Margin.px()
+    val margin = marginDp().all(15)    .top(0)    
       .vertical(20)    
       .divideVertical(10)    
       .build()
