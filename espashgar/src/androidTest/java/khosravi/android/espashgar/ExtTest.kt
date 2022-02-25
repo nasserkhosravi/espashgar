@@ -46,14 +46,35 @@ class ExtTest {
 
     @Test
     fun test_readBool_parcel_else() {
-        mock(Parcel::class.java).let { sut->
+        mock(Parcel::class.java).let { sut ->
             `when`(sut.readInt()).thenReturn(-1)
             assertThat(sut.readBool()).isNull()
         }
 
-        mock(Parcel::class.java).let { sut->
+        mock(Parcel::class.java).let { sut ->
             `when`(sut.readInt()).thenReturn(2)
             assertThat(sut.readBool()).isNull()
         }
+    }
+
+    @Test
+    fun test_writeBool_true_parcel() {
+        val parcel = mock(Parcel::class.java)
+        parcel.writeBool(true)
+        verify(parcel).writeInt(1)
+    }
+
+    @Test
+    fun test_writeBool_false_parcel() {
+        val parcel = mock(Parcel::class.java)
+        parcel.writeBool(false)
+        verify(parcel).writeInt(0)
+    }
+
+    @Test
+    fun test_writeBool_null_parcel() {
+        val parcel = mock(Parcel::class.java)
+        parcel.writeBool(null)
+        verify(parcel).writeInt(-1)
     }
 }
