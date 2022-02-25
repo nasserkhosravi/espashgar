@@ -155,12 +155,10 @@ abstract class Space4D<SELF> {
         if (this == null && b == null) {
             return b
         }
-        return this ?: 0 + (b ?: 0)
+        return (this ?: 0) + (b ?: 0)
     }
 
-    private fun Int?.selfOrZero(): Int {
-        return this ?: 0
-    }
+    private fun Int?.selfOrZero(): Int = this ?: 0
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
