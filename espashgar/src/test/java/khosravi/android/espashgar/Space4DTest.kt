@@ -22,15 +22,15 @@ class Space4DTest {
     }
 
     @Test
-    fun `test dp changing toPx`() {
-        val sut = createSutDp().toPx()
-        assertIsPx(sut)
+    fun `test isDp changing from px`() {
+        val sut = createSutPx().toDp()
+        assertIsDp(sut)
     }
 
     @Test
-    fun `test px changing toDp`() {
-        val sut = createSutPx().toDp()
-        assertIsDp(sut)
+    fun `test isPx changing from dp`() {
+        val sut = createSutDp().toPx()
+        assertIsPx(sut)
     }
 
     @Test
@@ -44,7 +44,7 @@ class Space4DTest {
 
     @Test
     fun `test sum`() {
-        val sut = createSutDp(1,2,3,4) + 12
+        val sut = createSutDp(1, 2, 3, 4) + 12
         assertThat(sut.start).isEqualTo(13)
         assertThat(sut.top).isEqualTo(14)
         assertThat(sut.end).isEqualTo(15)
@@ -72,7 +72,7 @@ class Space4DTest {
 
     @Test
     fun `test minus`() {
-        val sut = createSutDp(10,12,13,14) - 10
+        val sut = createSutDp(10, 12, 13, 14) - 10
         assertThat(sut.start).isEqualTo(0)
         assertThat(sut.top).isEqualTo(2)
         assertThat(sut.end).isEqualTo(3)
@@ -81,7 +81,7 @@ class Space4DTest {
 
     @Test
     fun `test minusAssign`() {
-        val sut = createSutDp(10,10,10,10)
+        val sut = createSutDp(10, 10, 10, 10)
         sut -= 2
         assertThat(sut.start).isEqualTo(8)
         assertThat(sut.top).isEqualTo(8)
@@ -100,7 +100,7 @@ class Space4DTest {
 
     @Test
     fun `test times`() {
-        val sut = createSutDp(10,12,13,14) * 2
+        val sut = createSutDp(10, 12, 13, 14) * 2
         assertThat(sut.start).isEqualTo(20)
         assertThat(sut.top).isEqualTo(24)
         assertThat(sut.end).isEqualTo(26)
@@ -109,7 +109,7 @@ class Space4DTest {
 
     @Test
     fun `test timesAssign`() {
-        val sut = createSutDp(10,10,10,10)
+        val sut = createSutDp(10, 10, 10, 10)
         sut *= 2
         assertThat(sut.start).isEqualTo(20)
         assertThat(sut.top).isEqualTo(20)
@@ -125,23 +125,23 @@ class Space4DTest {
     }
 
     @Test
-    fun `test equals different type by same value`(){
+    fun `test equals different type by same value`() {
         val a = createSutDp(1, 1, 1, 1)
         val b = createSutPx(1, 1, 1, 1)
         assertThat(a).isNotEqualTo(b)
     }
 
     @Test
-    fun `test equals value different`(){
+    fun `test equals value different`() {
         val a = createSutDp(1, 1, 1, 1)
         val b = createSutDp(1, 1, 2, 1)
         assertThat(a).isNotEqualTo(b)
     }
 
     @Test
-    fun `test equals same reference`(){
+    fun `test equals same reference`() {
         val a = createSutDp(1, 1, 1, 1)
-        val b  = a
+        val b = a
         assertThat(a).isEqualTo(b)
     }
 
