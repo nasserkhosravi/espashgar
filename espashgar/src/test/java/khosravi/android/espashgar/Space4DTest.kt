@@ -53,7 +53,7 @@ class Space4DTest {
 
     @Test
     fun `test sumAssign`() {
-        val sut = createSutDp(1,1,1,1)
+        val sut = createSutDp(1, 1, 1, 1)
         sut += 10
         assertThat(sut.start).isEqualTo(11)
         assertThat(sut.top).isEqualTo(11)
@@ -115,6 +115,34 @@ class Space4DTest {
         assertThat(sut.top).isEqualTo(20)
         assertThat(sut.end).isEqualTo(20)
         assertThat(sut.bottom).isEqualTo(20)
+    }
+
+    @Test
+    fun `test equals same type same value`() {
+        val a = createSutDp(10, 20, 0, 4)
+        val b = createSutDp(10, 20, 0, 4)
+        assertThat(a).isEqualTo(b)
+    }
+
+    @Test
+    fun `test equals different type by same value`(){
+        val a = createSutDp(1, 1, 1, 1)
+        val b = createSutPx(1, 1, 1, 1)
+        assertThat(a).isNotEqualTo(b)
+    }
+
+    @Test
+    fun `test equals value different`(){
+        val a = createSutDp(1, 1, 1, 1)
+        val b = createSutDp(1, 1, 2, 1)
+        assertThat(a).isNotEqualTo(b)
+    }
+
+    @Test
+    fun `test equals same reference`(){
+        val a = createSutDp(1, 1, 1, 1)
+        val b  = a
+        assertThat(a).isEqualTo(b)
     }
 
 
