@@ -181,6 +181,24 @@ class Space4DTest {
         }
     }
 
+    @Test
+    fun test_vertical() {
+        val actual = createSutDp(0, 8, 0, 2)
+        assertThat(actual.vertical).isEqualTo(10)
+    }
+
+    @Test
+    fun test_vertical_bothNull() {
+        val actual = createSutDp(0, null, 0, null)
+        assertThat(actual.vertical).isEqualTo(null)
+    }
+
+    @Test
+    fun test_vertical_oneNull() {
+        val actual = createSutDp(0, 8, 0, null)
+        assertThat(actual.vertical).isEqualTo(8)
+    }
+
     /////////////////
     //Utility section
     /////////////////
