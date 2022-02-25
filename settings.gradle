@@ -7,5 +7,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "SpashgarDemo"
-include ':app'
+include ':demo'
 include ':espashgar'

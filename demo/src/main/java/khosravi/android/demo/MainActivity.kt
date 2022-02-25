@@ -1,12 +1,11 @@
-package khosravi.android.espashgardemo
+package khosravi.android.demo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import khosravi.android.demo.databinding.ActivityMainBinding
 import khosravi.android.espashgar.*
-import khosravi.android.espashgar.space.Margin
 import khosravi.android.espashgar.space.Padding
-import khosravi.android.espashgardemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
