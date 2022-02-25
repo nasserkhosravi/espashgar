@@ -6,7 +6,7 @@ Totally, padding and margin setting is easy in android but if you want do it in 
 Also this library has a beautiful syntax 😉.
 
     //Comprehensive builder-> Margin.dp() or Margin.px()
-    val margin = marginDp().all(15)    .top(0)    
+    val margin = marginDp().all(15).top(0)    
       .vertical(20)    
       .divideVertical(10)    
       .build()
