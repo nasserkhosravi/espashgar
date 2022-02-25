@@ -27,7 +27,7 @@ class Space4DTest {
 
     @Test
     fun test_isDp_changingFromPx() {
-        val sut = createSutPx(1, 1, 1, 1).toDp().toPx().toPx().toDp()
+        val sut = createSutPx(1, 1, 1, 1).toDp()
         assertIsDp(sut)
     }
 
