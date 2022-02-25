@@ -1,10 +1,8 @@
 package khosravi.android.espashgar
 
-import android.os.Bundle
 import android.view.View
 import khosravi.android.espashgar.space.Margin
 import khosravi.android.espashgar.space.Padding
-import khosravi.android.espashgar.space.Space4D
 
 fun Margin.applyOn(views: List<View>) {
     views.forEach { applyOn(it) }
@@ -15,15 +13,11 @@ fun Padding.applyOn(views: List<View>) {
 }
 
 fun Margin.applyOn(vararg views: View) {
-    for (view in views) {
-        applyOn(view)
-    }
+    applyOn(views.toList())
 }
 
 fun Padding.applyOn(vararg views: View) {
-    for (view in views) {
-        applyOn(view)
-    }
+    applyOn(views.toList())
 }
 
 fun View.getMargin(): Margin {
