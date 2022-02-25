@@ -89,6 +89,34 @@ class Space4DTest {
         assertThat(sut.bottom).isEqualTo(8)
     }
 
+    @Test
+    fun `test times empty`() {
+        val sut = createSutDp() * 12
+        assertThat(sut.start).isEqualTo(0)
+        assertThat(sut.top).isEqualTo(0)
+        assertThat(sut.end).isEqualTo(0)
+        assertThat(sut.bottom).isEqualTo(0)
+    }
+
+    @Test
+    fun `test times`() {
+        val sut = createSutDp(10,12,13,14) * 2
+        assertThat(sut.start).isEqualTo(20)
+        assertThat(sut.top).isEqualTo(24)
+        assertThat(sut.end).isEqualTo(26)
+        assertThat(sut.bottom).isEqualTo(28)
+    }
+
+    @Test
+    fun `test timesAssign`() {
+        val sut = createSutDp(10,10,10,10)
+        sut *= 2
+        assertThat(sut.start).isEqualTo(20)
+        assertThat(sut.top).isEqualTo(20)
+        assertThat(sut.end).isEqualTo(20)
+        assertThat(sut.bottom).isEqualTo(20)
+    }
+
 
     /////////////////
     //Utility section
