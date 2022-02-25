@@ -1,11 +1,15 @@
 package khosravi.android.espashgar
 
+import android.util.TypedValue
 import com.google.common.truth.Truth.assertThat
 import khosravi.android.espashgar.space.Dp4d
 import khosravi.android.espashgar.space.Px4d
 import khosravi.android.espashgar.space.Space4D
 import khosravi.android.espashgar.space.Value4d
+import org.junit.Assert.assertThrows
 import org.junit.Test
+import java.lang.IllegalArgumentException
+import kotlin.Int
 
 class Space4DTest {
 
@@ -23,7 +27,7 @@ class Space4DTest {
 
     @Test
     fun test_isDp_changingFromPx() {
-        val sut = createSutPx(1,1,1,1).toDp().toPx().toPx().toDp()
+        val sut = createSutPx(1, 1, 1, 1).toDp().toPx().toPx().toDp()
         assertIsDp(sut)
     }
 
@@ -145,6 +149,37 @@ class Space4DTest {
         assertThat(a).isEqualTo(b)
     }
 
+    @Test
+    fun test_createValue4dByType_dp() {
+        val type = TypedValue.COMPLEX_UNIT_DIP
+        val actual = Space4D.createValue4dByType(type, 1, 2, 3, 4)
+        assertThat(actual).isInstanceOf(Dp4d::class.java)
+    }
+
+    @Test
+    fun test_createValue4dByType_px() {
+        val type = TypedValue.COMPLEX_UNIT_PX
+        val actual = Space4D.createValue4dByType(type, 1, 2, 3, 4)
+        assertThat(actual).isInstanceOf(Px4d::class.java)
+    }
+
+    @Test
+    fun test_createValue4dByType_values() {
+        val type = TypedValue.COMPLEX_UNIT_PX
+        val actual = Space4D.createValue4dByType(type, 1, 2, 3, 4)
+        assertThat(actual.start).isEqualTo(1)
+        assertThat(actual.top).isEqualTo(2)
+        assertThat(actual.end).isEqualTo(3)
+        assertThat(actual.bottom).isEqualTo(4)
+    }
+
+    @Test
+    fun test_createValue4dByType_unsupportedType() {
+        assertThrows(IllegalArgumentException::class.java) {
+            val type = TypedValue.COMPLEX_UNIT_PT
+            val actual = Space4D.createValue4dByType(type, 1, 2, 3, 4)
+        }
+    }
 
     /////////////////
     //Utility section
