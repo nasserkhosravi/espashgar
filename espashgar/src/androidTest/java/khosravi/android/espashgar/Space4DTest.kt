@@ -199,6 +199,24 @@ class Space4DTest {
         assertThat(actual.vertical).isEqualTo(8)
     }
 
+    @Test
+    fun test_horizontal() {
+        val actual = createSutDp(4, 0, 8, 0)
+        assertThat(actual.horizontal).isEqualTo(12)
+    }
+
+    @Test
+    fun test_horizontal_bothNull() {
+        val actual = createSutDp(null, 2, null,2)
+        assertThat(actual.horizontal).isEqualTo(null)
+    }
+
+    @Test
+    fun test_horizontal_oneNull() {
+        val actual = createSutDp(null, null, 10, null)
+        assertThat(actual.horizontal).isEqualTo(10)
+    }
+
     /////////////////
     //Utility section
     /////////////////
