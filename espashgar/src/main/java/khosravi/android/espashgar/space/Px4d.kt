@@ -17,17 +17,17 @@ internal class Px4d(
     fun clone() = Px4d(start, top, end, bottom)
 
     override fun typeCode(): Int  = TypedValue.COMPLEX_UNIT_PX
-    
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (javaClass != other?.javaClass) return false
+        if (other !is Px4d) return false
+        if (!super.equals(other)) return false
         return true
     }
 
     override fun hashCode(): Int {
-        return javaClass.hashCode()
+        return super.hashCode()
     }
-
 
     companion object {
         private const val DP = TypedValue.COMPLEX_UNIT_DIP
