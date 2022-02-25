@@ -61,12 +61,44 @@ class Space4DTest {
         assertThat(sut.bottom).isEqualTo(11)
     }
 
-    private fun assertIsPx(sut: Space4dFake) {
+    @Test
+    fun `test minus empty`() {
+        val sut = createSutDp() - 12
+        assertThat(sut.start).isEqualTo(-12)
+        assertThat(sut.top).isEqualTo(-12)
+        assertThat(sut.end).isEqualTo(-12)
+        assertThat(sut.bottom).isEqualTo(-12)
+    }
+
+    @Test
+    fun `test minus`() {
+        val sut = createSutDp(10,12,13,14) - 10
+        assertThat(sut.start).isEqualTo(0)
+        assertThat(sut.top).isEqualTo(2)
+        assertThat(sut.end).isEqualTo(3)
+        assertThat(sut.bottom).isEqualTo(4)
+    }
+
+    @Test
+    fun `test minusAssign`() {
+        val sut = createSutDp(10,10,10,10)
+        sut -= 2
+        assertThat(sut.start).isEqualTo(8)
+        assertThat(sut.top).isEqualTo(8)
+        assertThat(sut.end).isEqualTo(8)
+        assertThat(sut.bottom).isEqualTo(8)
+    }
+
+
+    /////////////////
+    //Utility section
+    /////////////////
+    private fun assertIsPx(sut: Space4D<*>) {
         assertThat(sut.isPx()).isTrue()
         assertThat(sut.isDp()).isFalse()
     }
 
-    private fun assertIsDp(sut: Space4dFake) {
+    private fun assertIsDp(sut: Space4D<*>) {
         assertThat(sut.isDp()).isTrue()
         assertThat(sut.isPx()).isFalse()
     }
