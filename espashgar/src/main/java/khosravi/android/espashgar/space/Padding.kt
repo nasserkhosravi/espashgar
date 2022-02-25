@@ -15,7 +15,7 @@ open class Padding private constructor(
     }
 
     fun applyOn(view: View) {
-        val value = getPreparedValueInPx()
+        val value = getPreparedValueInPx(view.context)
         if (isRtlAware) {
             view.setPaddingRelative(
                 value.start ?: view.paddingStart,

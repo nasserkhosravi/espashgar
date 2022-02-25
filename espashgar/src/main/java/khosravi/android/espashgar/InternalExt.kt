@@ -1,15 +1,21 @@
 package khosravi.android.espashgar
 
+import android.content.Context
 import android.content.res.Resources
 import android.os.Parcel
-import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 
-internal fun Int.convertTo(unit: Int) = this.toFloat().convertTo(unit).toInt()
+internal fun Int.pxToDp(context: Context? = null): Int {
+    return (this / context.getOrDefaultResource().displayMetrics.density).toInt()
+}
 
-internal fun Float.convertTo(unit: Int): Float {
-    return TypedValue.applyDimension(unit, this, Resources.getSystem().displayMetrics)
+internal fun Int.dpToPx(context: Context? = null): Int {
+    return (this * context.getOrDefaultResource().displayMetrics.density).toInt()
+}
+
+internal fun Context?.getOrDefaultResource(): Resources {
+    return this?.resources ?: Resources.getSystem()
 }
 
 internal fun Parcel.writeBool(flag: Boolean?) {

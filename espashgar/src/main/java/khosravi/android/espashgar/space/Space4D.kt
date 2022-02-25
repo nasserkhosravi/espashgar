@@ -1,5 +1,6 @@
 package khosravi.android.espashgar.space
 
+import android.content.Context
 import android.util.TypedValue
 import java.lang.IllegalArgumentException
 
@@ -64,9 +65,9 @@ abstract class Space4D<SELF> {
     /**
      * convert values to px if it's not
      */
-    internal fun getPreparedValueInPx(): Value4d {
+    internal fun getPreparedValueInPx(context: Context?): Value4d {
         if (pxValue == null) {
-            pxValue = mainValue.toPixel()
+            pxValue = mainValue.toPixel(context)
         }
         return pxValue!!
     }
@@ -79,20 +80,20 @@ abstract class Space4D<SELF> {
 
     fun isPx(): Boolean = mainValue is Px4d
 
-    fun toDp(): SELF = createSelf(mainValue.toDp())
+    fun toDp(context: Context? = null): SELF = createSelf(mainValue.toDp(context))
 
-    fun toPx(): SELF = createSelf(mainValue.toPixel())
+    fun toPx(context: Context? = null): SELF = createSelf(mainValue.toPixel(context))
 
-    private fun Value4d.toDp(): Dp4d {
+    private fun Value4d.toDp(context: Context?): Dp4d {
         return when (this) {
             is Dp4d -> this.clone()
-            is Px4d -> this.toDp()
+            is Px4d -> this.toDp(context)
         }
     }
 
-    private fun Value4d.toPixel(): Px4d {
+    private fun Value4d.toPixel(context: Context?): Px4d {
         return when (this) {
-            is Dp4d -> this.toPixel()
+            is Dp4d -> this.toPixel(context)
             is Px4d -> this.clone()
         }
     }

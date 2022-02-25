@@ -1,17 +1,18 @@
 package khosravi.android.espashgar.space
 
+import android.content.Context
 import android.util.TypedValue
-import khosravi.android.espashgar.convertTo
+import khosravi.android.espashgar.dpToPx
 
 internal class Dp4d(
     start: Int?, top: Int?, end: Int?, bottom: Int?
 ) : Value4d(start, top, end, bottom) {
 
-    fun toPixel() = Px4d(
-        start?.convertTo(PX),
-        top?.convertTo(PX),
-        end?.convertTo(PX),
-        bottom?.convertTo(PX)
+    fun toPixel(context: Context?) = Px4d(
+        start?.dpToPx(context),
+        top?.dpToPx(context),
+        end?.dpToPx(context),
+        bottom?.dpToPx(context)
     )
 
     fun clone() = Dp4d(start, top, end, bottom)
@@ -27,9 +28,5 @@ internal class Dp4d(
 
     override fun hashCode(): Int {
         return super.hashCode()
-    }
-
-    companion object {
-        private const val PX = TypedValue.COMPLEX_UNIT_PX
     }
 }

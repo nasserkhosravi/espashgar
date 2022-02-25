@@ -1,7 +1,9 @@
 package khosravi.android.espashgar.space
 
+import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
+import android.view.ContentInfo
 import android.view.View
 import android.view.ViewGroup
 import khosravi.android.espashgar.*
@@ -19,14 +21,14 @@ class Margin internal constructor(
 
     fun applyOn(view: View) {
         view.layoutParams?.let {
-            applyOn(it)
+            applyOn(it,view.context)
             view.layoutParams = it
         }
     }
 
-    fun applyOn(layoutParam: ViewGroup.LayoutParams) {
+    fun applyOn(layoutParam: ViewGroup.LayoutParams,context:Context?) {
         if (layoutParam is ViewGroup.MarginLayoutParams) {
-            val value = getPreparedValueInPx()
+            val value = getPreparedValueInPx(context)
             if (isRtlAware) {
                 layoutParam.setMargins(
                     value.start ?: layoutParam.marginStart,
