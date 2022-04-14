@@ -12,24 +12,16 @@ abstract class Builder4d<SELF : Builder4d<SELF>> internal constructor(
      * Set all four direction specifically
      */
     fun every(start: Int?, top: Int?, end: Int?, bottom: Int?) {
-        if (start != null) {
-            value.start = start
-        }
-        if (top != null) {
-            value.top = top
-        }
-        if (end != null) {
-            value.end = end
-        }
-        if (bottom != null) {
-            value.bottom = bottom
-        }
+        value.start = start
+        value.top = top
+        value.end = end
+        value.bottom = bottom
     }
 
     /**
      * Set [size] to all four side
      */
-    fun all(size: Int): SELF {
+    fun all(size: Int?): SELF {
         value.start = size
         value.top = size
         value.end = size
@@ -49,7 +41,7 @@ abstract class Builder4d<SELF : Builder4d<SELF>> internal constructor(
     /**
      * Set [value] to top and bottom
      */
-    fun vertical(value: Int): SELF {
+    fun vertical(value: Int?): SELF {
         this.value.top = value
         this.value.bottom = value
         return self()
@@ -67,7 +59,7 @@ abstract class Builder4d<SELF : Builder4d<SELF>> internal constructor(
     /**
      * Set [value] to start and end
      */
-    fun horizontal(value: Int): SELF {
+    fun horizontal(value: Int?): SELF {
         this.value.start = value
         this.value.end = value
         return self()
@@ -76,7 +68,7 @@ abstract class Builder4d<SELF : Builder4d<SELF>> internal constructor(
     /**
      * Set [horizontal] to start end and [vertical] to top bottom
      */
-    fun side(horizontal: Int, vertical: Int): SELF {
+    fun side(horizontal: Int?, vertical: Int?): SELF {
         this.value.top = vertical
         this.value.bottom = vertical
         this.value.start = horizontal
@@ -87,7 +79,7 @@ abstract class Builder4d<SELF : Builder4d<SELF>> internal constructor(
     /**
      * Set [value] to start
      */
-    fun start(value: Int): SELF {
+    fun start(value: Int?): SELF {
         this.value.start = value
         return self()
     }
@@ -95,7 +87,7 @@ abstract class Builder4d<SELF : Builder4d<SELF>> internal constructor(
     /**
      * Set [value] to end
      */
-    fun end(value: Int): SELF {
+    fun end(value: Int?): SELF {
         this.value.end = value
         return self()
     }
@@ -103,7 +95,7 @@ abstract class Builder4d<SELF : Builder4d<SELF>> internal constructor(
     /**
      * Set [value] to top
      */
-    fun top(value: Int): SELF {
+    fun top(value: Int?): SELF {
         this.value.top = value
         return self()
     }
@@ -111,7 +103,7 @@ abstract class Builder4d<SELF : Builder4d<SELF>> internal constructor(
     /**
      * Set [value] to bottom
      */
-    fun bottom(value: Int): SELF {
+    fun bottom(value: Int?): SELF {
         this.value.bottom = value
         return self()
     }
