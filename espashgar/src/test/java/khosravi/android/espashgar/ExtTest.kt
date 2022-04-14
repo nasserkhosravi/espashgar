@@ -2,12 +2,15 @@ package khosravi.android.espashgar
 
 import android.os.Parcel
 import android.view.View
-import com.google.common.truth.Truth.assertThat
 import khosravi.android.espashgar.space.Margin
 import khosravi.android.espashgar.space.Padding
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mockito.*
+import org.robolectric.RobolectricTestRunner
 
+@RunWith(RobolectricTestRunner::class)
 class ExtTest {
 
     @Test
@@ -34,14 +37,14 @@ class ExtTest {
     fun test_Parcel_readBool_1() {
         val mock = mock(Parcel::class.java)
         `when`(mock.readInt()).thenReturn(1)
-        assertThat(mock.readBool()).isTrue()
+        assertThat(mock.readBool()).isTrue
     }
 
     @Test
     fun test_Parcel_readBool_0() {
         val mock = mock(Parcel::class.java)
         `when`(mock.readInt()).thenReturn(0)
-        assertThat(mock.readBool()).isFalse()
+        assertThat(mock.readBool()).isFalse
     }
 
     @Test

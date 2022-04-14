@@ -1,16 +1,19 @@
 package khosravi.android.espashgar
 
 import android.util.TypedValue
-import com.google.common.truth.Truth.assertThat
+import org.assertj.core.api.Assertions.assertThat
 import khosravi.android.espashgar.space.Dp4d
 import khosravi.android.espashgar.space.Px4d
 import khosravi.android.espashgar.space.Space4D
 import khosravi.android.espashgar.space.Value4d
 import org.junit.Assert.assertThrows
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 import java.lang.IllegalArgumentException
 import kotlin.Int
 
+@RunWith(RobolectricTestRunner::class)
 class Space4DTest {
 
     @Test
@@ -176,8 +179,8 @@ class Space4DTest {
     @Test
     fun test_createValue4dByType_unsupportedType() {
         assertThrows(IllegalArgumentException::class.java) {
-            val type = TypedValue.COMPLEX_UNIT_PT
-            val actual = Space4D.createValue4dByType(type, 1, 2, 3, 4)
+            val unsupportedType = TypedValue.COMPLEX_UNIT_PT
+            Space4D.createValue4dByType(unsupportedType, 1, 2, 3, 4)
         }
     }
 
@@ -207,7 +210,7 @@ class Space4DTest {
 
     @Test
     fun test_horizontal_bothNull() {
-        val actual = createSutDp(null, 2, null,2)
+        val actual = createSutDp(null, 2, null, 2)
         assertThat(actual.horizontal).isEqualTo(null)
     }
 
@@ -221,13 +224,13 @@ class Space4DTest {
     //Utility section
     /////////////////
     private fun assertIsPx(sut: Space4D<*>) {
-        assertThat(sut.isPx()).isTrue()
-        assertThat(sut.isDp()).isFalse()
+        assertThat(sut.isPx()).isTrue
+        assertThat(sut.isDp()).isFalse
     }
 
     private fun assertIsDp(sut: Space4D<*>) {
-        assertThat(sut.isDp()).isTrue()
-        assertThat(sut.isPx()).isFalse()
+        assertThat(sut.isDp()).isTrue
+        assertThat(sut.isPx()).isFalse
     }
 
     private fun createSutDp(
