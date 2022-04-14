@@ -2,6 +2,7 @@ package khosravi.android.espashgar.space
 
 import junit.framework.Assert.assertTrue
 import khosravi.android.espashgar.aInt
+import khosravi.android.espashgar.aValue4d
 import org.junit.Test
 
 class Builder4dTest {
@@ -121,8 +122,7 @@ class Builder4dTest {
     private fun sut(
         start: Int? = null, top: Int? = null, end: Int? = null, bottom: Int? = null
     ): Builder4dFake {
-        //TODO:solve me, we can't extend sealed class.
-        val value = Px4d(start, top, end, bottom)
+        val value = aValue4d(start, top, end, bottom)
         return Builder4dFake(value)
     }
 

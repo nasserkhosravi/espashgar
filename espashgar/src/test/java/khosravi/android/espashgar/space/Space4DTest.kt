@@ -1,8 +1,17 @@
 package khosravi.android.espashgar.space
 
+import android.content.Context
 import android.util.TypedValue
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.spyk
+import io.mockk.verify
+import khosravi.android.espashgar.aDp4d
+import khosravi.android.espashgar.aPx4d
+import khosravi.android.espashgar.aValue4d
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Assert.assertThrows
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -25,13 +34,13 @@ class Space4DTest {
     }
 
     @Test
-    fun test_isDp_changingFromPx() {
+    fun test_toDp_changingFromPx() {
         val sut = createSutPx(1, 1, 1, 1).toDp()
         assertIsDp(sut)
     }
 
     @Test
-    fun test_isPx_changingFromDp() {
+    fun test_toPx_changingFromDp() {
         val sut = createSutDp().toPx()
         assertIsPx(sut)
     }
@@ -181,6 +190,25 @@ class Space4DTest {
     }
 
     @Test
+    fun test_getPreparedValueInPx_when_pxValueIsNull() {
+        val sutDp = createSutDp()
+
+        val pxValue = sutDp.getPreparedValueInPx(mockk(relaxed = true))
+        assertThat(pxValue).isInstanceOf(Px4d::class.java)
+    }
+
+    @Test
+    fun test_getPreparedValueInPx_whenCalledTwice_returnReferenceMustBeSame() {
+        val context = mockk<Context>(relaxed = true)
+        val sutDp = createSutDp()
+
+        val pxValue1 = sutDp.getPreparedValueInPx(context)
+        val pxValue2 = sutDp.getPreparedValueInPx(context)
+
+        assertTrue(pxValue1 === pxValue2)
+    }
+
+    @Test
     fun test_vertical() {
         val actual = createSutDp(0, 8, 0, 2)
         assertThat(actual.vertical).isEqualTo(10)
@@ -235,7 +263,7 @@ class Space4DTest {
         end: Int? = null,
         bottom: Int? = null
     ): Space4dFake {
-        return Space4dFake(Dp4d(start, top, end, bottom))
+        return Space4dFake(aDp4d(start, top, end, bottom))
     }
 
     private fun createSutPx(
@@ -244,7 +272,7 @@ class Space4DTest {
         end: Int? = null,
         bottom: Int? = null
     ): Space4dFake {
-        return Space4dFake(Px4d(start, top, end, bottom))
+        return Space4dFake(aPx4d(start, top, end, bottom))
     }
 
     private class Space4dFake(override val mainValue: Value4d) : Space4D<Space4dFake>() {
