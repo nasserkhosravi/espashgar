@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 
 internal fun Int.pxToDp(context: Context? = null): Int {
-    return (this / context.getOrDefaultResource().displayMetrics.density).toInt()
+    return (this / context.getResourceOrDefault().displayMetrics.density).toInt()
 }
 
 internal fun Int.dpToPx(context: Context? = null): Int {
-    return (this * context.getOrDefaultResource().displayMetrics.density).toInt()
+    return (this * context.getResourceOrDefault().displayMetrics.density).toInt()
 }
 
-internal fun Context?.getOrDefaultResource(): Resources {
+private fun Context?.getResourceOrDefault(): Resources {
     return this?.resources ?: Resources.getSystem()
 }
 
