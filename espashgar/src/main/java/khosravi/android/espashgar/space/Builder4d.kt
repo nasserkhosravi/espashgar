@@ -11,11 +11,12 @@ abstract class Builder4d<SELF : Builder4d<SELF>> internal constructor(
     /**
      * Set all four direction specifically
      */
-    fun every(start: Int?, top: Int?, end: Int?, bottom: Int?) {
+    fun every(start: Int?, top: Int?, end: Int?, bottom: Int?): SELF {
         value.start = start
         value.top = top
         value.end = end
         value.bottom = bottom
+        return self()
     }
 
     /**
