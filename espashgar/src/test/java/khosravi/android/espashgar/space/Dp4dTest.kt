@@ -1,30 +1,30 @@
-package khosravi.android.espashgar
+package khosravi.android.espashgar.space
 
 import android.content.Context
 import android.util.TypedValue
 import io.mockk.mockk
 import io.mockk.verify
-import khosravi.android.espashgar.space.Dp4d
-import khosravi.android.espashgar.space.Px4d
+import khosravi.android.espashgar.aInt
+import khosravi.android.espashgar.dpToPx
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class Px4dTest {
+class Dp4dTest {
 
     @Test
-    fun test_pxToDp() {
+    fun test_toPixel() {
         val context = mockk<Context>(relaxed = true)
         val sut = sut(aInt(), aInt(), aInt(), aInt())
-        sut.toDp(context)
-        verify { sut.start?.pxToDp(context) }
-        verify { sut.end?.pxToDp(context) }
-        verify { sut.top?.pxToDp(context) }
-        verify { sut.bottom?.pxToDp(context) }
+        sut.toPixel(context)
+        verify { sut.start?.dpToPx(context) }
+        verify { sut.end?.dpToPx(context) }
+        verify { sut.top?.dpToPx(context) }
+        verify { sut.bottom?.dpToPx(context) }
     }
 
     @Test
     fun test_typeCode() {
-        assertThat(sut().typeCode()).isEqualTo(TypedValue.COMPLEX_UNIT_PX)
+        assertThat(sut().typeCode()).isEqualTo(TypedValue.COMPLEX_UNIT_DIP)
     }
 
     @Test
@@ -37,9 +37,9 @@ class Px4dTest {
 
     @Test
     fun test_equals_sameValuesWithDifferentType() {
-        val px4d = sut(aInt(), aInt(), aInt(), aInt())
-        val dp4d = Dp4d(px4d.start, px4d.top, px4d.end, px4d.bottom)
-        assertThat(px4d).isNotEqualTo(dp4d)
+        val dp4d = sut(aInt(), aInt(), aInt(), aInt())
+        val px4d = Px4d(dp4d.start, dp4d.top, dp4d.end, dp4d.bottom)
+        assertThat(dp4d).isNotEqualTo(px4d)
     }
 
     @Test
@@ -54,6 +54,6 @@ class Px4dTest {
         top: Int? = null,
         end: Int? = null,
         bottom: Int? = null
-    ) = Px4d(start, top, end, bottom)
+    ) = Dp4d(start, top, end, bottom)
 
 }

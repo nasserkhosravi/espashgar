@@ -1,11 +1,7 @@
-package khosravi.android.espashgar
+package khosravi.android.espashgar.space
 
 import android.util.TypedValue
 import org.assertj.core.api.Assertions.assertThat
-import khosravi.android.espashgar.space.Dp4d
-import khosravi.android.espashgar.space.Px4d
-import khosravi.android.espashgar.space.Space4D
-import khosravi.android.espashgar.space.Value4d
 import org.junit.Assert.assertThrows
 import org.junit.Test
 import org.junit.runner.RunWith
